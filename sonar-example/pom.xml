@@ -13,6 +13,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+    <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+    **<sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>**
+    <sonar.language>java</sonar.language>
   </properties>
 
   <dependencies>
@@ -35,8 +39,24 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.5</version>
+				<executions>
+                                   <execution>
+                                     <id>prepare-agent</id>
+                                     <goals>
+                                        <goal>prepare-agent</goal>
+                                    </goals>
+                                     **<phase>test-compile</phase>**
+                                </execution>
+                                <execution>
+                                     <id>report</id>
+                                     **<phase>package</phase>**
+                                     <goals>
+                                         <goal>report</goal>
+                                     </goals>
+                                 </execution>
+                             </executions>
 			</plugin>
-
+           		
 		</plugins>
 	</build>
  
