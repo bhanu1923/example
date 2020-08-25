@@ -29,6 +29,10 @@ public class App
     public Object getData() {
     	return null;
     }
+	
+	public void addition(int a , int b) {
+		int res = a + b;
+	}
     
 	public static void main( String[] args )
     {
